@@ -1,0 +1,7 @@
+Title: Yet Another Page
+
+----
+
+Body:
+
+Go to [the home page](/).

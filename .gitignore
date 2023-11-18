@@ -1,0 +1,7 @@
+/media/*
+/site/accounts/*
+/site/cache/*
+/site/config/.license
+/site/logs
+/site/sessions/*
+/vendor
