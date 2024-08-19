@@ -1,4 +1,4 @@
-# Kirby 4rc1 issue with using the DefaultPage model class
+# Kirby 4 issue with using the DefaultPage model class
 
 ## Context
 
@@ -18,7 +18,7 @@ class ProductPage extends DefaultPage {
 }
 ```
 
-In that case, chances are Kirby will not have included `site/models/default.php`, and PHP encounter a fatal error:
+In that case, chances are Kirby will not have included `site/models/default.php`, and PHP encounters a fatal error:
 
 > Uncaught Error: Class "DefaultPage" not found in site/models/aaa.php:3
 
@@ -27,14 +27,12 @@ In that case, chances are Kirby will not have included `site/models/default.php`
 1. Download this repository
 2. Install dependencies with composer: `composer install`
 3. Run the PHP dev server with `composer run dev` (uses port `8000`, you can change it in `composer.json`)
-4. Open the resulting site (`http://localhost:8000` by default) and visit the three test pages.
+4. Open the resulting site (`http://localhost:8000` by default).
 
-By default, everything should work, because there is a custom class autoloader registered in `public/index.php`:
+You should see the `Class "DefaultPage" not found` error.
 
-```php
-spl_autoload_register(static function ($class) {
-	// …
-}
+You can enable a workaround that registers a class autoloading function with `spl_autoload_register`, by running the dev server with:
+
+```sh
+KIRBY_AUTOLOAD_MODELS=true composer run dev
 ```
-
-Comment out or remove this function call and try again to reload the home page or any other test page, and you should see the `Class "DefaultPage" not found` error.
